@@ -13,8 +13,11 @@ foreach ($files as $file) {
     echo '<li>';
     echo '<a href="uploads/' . $file .'" target="_blank">';
     echo $file;
-    echo ' - Uploaded on ' . date('F j, Y \a\t h:i a', filemtime('uploads/'.$file)) . ' (UTC)';
     echo '</a>';
+    $date = (new DateTime(filemtime('uploads/'.$file)))
+        ->setTimezone(new DateTimeZone('America/Los_Angeles'))
+        ->format('F j, Y \a\t h:i a');
+    echo ' - Uploaded ' . $date . ' (Pacific)';
     echo '</li>';
 
 }
