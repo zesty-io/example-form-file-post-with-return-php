@@ -16,6 +16,18 @@ if (empty($_FILES)) {
     die('Service online');
 }
 
+// Get the file size limit (or default to 15 MB)
+// Note, if you go over a certain size, you may need to add a custom ini setting for Heroku
+$maxFileSize = getenv('MAX_FILE_SIZE');
+$maxFileSize = (!empty($maxFileSize)) ? $maxFileSize : 15;
+
+// Convert to bytes
+$maxFileSizeInBytes = $maxFileSize * 1024 * 1024;
+
+if ($_FILES['userfile']['size'] > $maxFileSizeInBytes) {
+    die('The file you are trying to upload is too big. It must not be more than ' . $maxFileSize . ' megabytes (MB).');
+}
+
 $originalFilename = basename($_FILES['userfile']['name']);
 $originalExtension = (count(explode('.', $originalFilename)) > 1) ? '.' . array_reverse(explode('.', $originalFilename))[0] : '';
 
