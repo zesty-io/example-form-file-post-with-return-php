@@ -11,7 +11,10 @@ foreach ($files as $file) {
     }
 
     echo '<li>';
+    echo '<a href="uploads/' . $file .'" target="_blank">';
     echo $file;
+    echo ' - Uploaded on ' . date('F j, Y \a\t h:i a', filemtime('uploads/'.$file)) . ' (UTC)';
+    echo '</a>';
     echo '</li>';
 
 }
