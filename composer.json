@@ -1,0 +1,12 @@
+{
+    "name": "zesty-io/example-form-file-post-with-return-php",
+    "authors": [
+        {
+            "name": "Andy Fleming",
+            "email": "andy@zesty.io"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^2.2"
+    }
+}
