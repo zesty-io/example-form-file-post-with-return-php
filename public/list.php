@@ -14,6 +14,7 @@ foreach ($files as $file) {
     echo '<a href="uploads/' . $file .'" target="_blank">';
     echo $file;
     echo '</a>';
+    echo ' - ' . filesize('uploads/' . $file);
     $date = new DateTime();
     $date->setTimestamp(filemtime('uploads/'.$file));
     $date->setTimezone(new DateTimeZone('America/Los_Angeles'));
