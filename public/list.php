@@ -1,5 +1,15 @@
 <?php
 
+function convertSizeToHumanReadable($bytes) {
+    if ($bytes == 0)
+        return "0.00 B";
+
+    $s = array('bytes', 'kilobytes', 'megabytes', 'gigabytes');
+    $e = (int) floor(log($bytes, 1024));
+
+    return round($bytes/pow(1024, $e), 2).' '.$s[$e];
+}
+
 $files = scandir('uploads');
 
 echo '<ul>';
@@ -14,7 +24,7 @@ foreach ($files as $file) {
     echo '<a href="uploads/' . $file .'" target="_blank">';
     echo $file;
     echo '</a>';
-    echo ' - ' . filesize('uploads/' . $file);
+    echo ' - ' . convertSizeToHumanReadable(filesize('uploads/' . $file));
     $date = new DateTime();
     $date->setTimestamp(filemtime('uploads/'.$file));
     $date->setTimezone(new DateTimeZone('America/Los_Angeles'));
